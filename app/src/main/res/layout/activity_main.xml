@@ -12,12 +12,10 @@
         android:id="@+id/headerText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="63dp"
-        android:layout_marginBottom="41dp"
         android:gravity="center"
         android:text="Countdown Timer"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textColor="#00BCD4"
         android:textSize="34sp"
         app:layout_constraintBottom_toTopOf="@+id/enterSecondText"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,35 +26,47 @@
         android:id="@+id/startButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="42dp"
-        android:backgroundTint="#009688"
+        android:layout_marginTop="60dp"
+        android:backgroundTint="#4CAF50"
         android:onClick="startCountdown"
         android:text="START"
         app:icon="@android:drawable/ic_media_play"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/stopButton"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/counterText" />
+
+    <Button
+        android:id="@+id/pauseButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="#B63C15"
+        android:onClick="pauseCountdown"
+        android:text="pause"
+        app:icon="@android:drawable/ic_media_pause"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startButton" />
 
     <Button
         android:id="@+id/stopButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="22dp"
-        android:layout_marginBottom="42dp"
-        android:backgroundTint="#009688"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="#A31747"
         android:onClick="stopCountdown"
         android:text="STOP"
-        app:icon="@android:drawable/ic_media_pause"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:icon="@android:drawable/checkbox_off_background"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/startButton" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pauseButton" />
 
     <EditText
         android:id="@+id/enterSecondText"
         android:layout_width="125dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="312dp"
+        android:layout_marginBottom="40dp"
         android:ems="10"
         android:hint="Secs"
         android:inputType="number"
@@ -64,15 +74,15 @@
         android:textColor="@color/white"
         android:textColorHint="#52FFFFFF"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/startButton"
+        app:layout_constraintBottom_toTopOf="@+id/counterText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/headerText" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/counterText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="0"
         android:textAlignment="center"
         android:textColor="#009688"
         android:textSize="96sp"

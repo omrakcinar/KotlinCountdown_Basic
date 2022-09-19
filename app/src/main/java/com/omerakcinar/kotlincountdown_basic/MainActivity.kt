@@ -18,10 +18,17 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        binding.pauseButton.isEnabled = false
+        binding.startButton.isEnabled = true
+        binding.stopButton.isEnabled = false
     }
 
     fun startCountdown(view: View){
         if (!binding.enterSecondText.text.isEmpty()){
+            binding.pauseButton.isEnabled = true
+            binding.startButton.isEnabled = false
+            binding.stopButton.isEnabled = true
+            binding.enterSecondText.visibility = View.INVISIBLE
 
             if (!isStopped){
                 val secondAsLong = binding.enterSecondText.text.toString().toInt() * 1000
@@ -35,6 +42,10 @@ class MainActivity : AppCompatActivity() {
 
                     override fun onFinish() {
                         binding.counterText.text = "0"
+                        binding.pauseButton.isEnabled = false
+                        binding.startButton.isEnabled = true
+                        binding.stopButton.isEnabled = false
+                        binding.enterSecondText.visibility = View.VISIBLE
                     }
 
                 }.start()
@@ -42,25 +53,46 @@ class MainActivity : AppCompatActivity() {
 
                 countdownTimer = object : CountDownTimer(remainedSeconds,1000){
                     override fun onTick(p0: Long) {
-                        var second = p0 + 1000
+                        var second = p0 + 200
                         binding.counterText.text = "${second/1000}"
                     }
 
                     override fun onFinish() {
                         binding.counterText.text = "0"
+                        binding.pauseButton.isEnabled = false
+                        binding.startButton.isEnabled = true
+                        binding.stopButton.isEnabled = false
+                        binding.enterSecondText.visibility = View.VISIBLE
                     }
 
                 }.start()
             }
 
 
+        } else {
+            Toast.makeText(this,"Please enter a number as second!",Toast.LENGTH_LONG).show()
         }
+    }
+
+    fun pauseCountdown(view: View){
+        countdownTimer.cancel()
+        remainedSeconds = binding.counterText.text.toString().toInt().toLong() * 1000
+        isStopped = true
+        binding.pauseButton.isEnabled = false
+        binding.startButton.isEnabled = true
+        binding.stopButton.isEnabled = true
+
     }
 
     fun stopCountdown(view: View){
         countdownTimer.cancel()
-        remainedSeconds = binding.counterText.text.toString().toInt().toLong() * 1000
-        isStopped = true
+        isStopped = false
+        binding.enterSecondText.visibility = View.VISIBLE
+        binding.counterText.text = "0"
+        binding.pauseButton.isEnabled = false
+        binding.startButton.isEnabled = true
+        binding.stopButton.isEnabled = false
+
     }
 
 }
